@@ -1,7 +1,7 @@
 ﻿// ЛР №1 задание 3 на с++.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
-#include<cmath>
-#include<iomanip>
+//#include<cmath>
+//#include<iomanip>
 #include <iostream>
 using namespace std;
 
@@ -14,13 +14,20 @@ int main()
 
     cout << "Выберите производителя: \n";
     cout << "1-Samsung \n";
-    cout << "2-Dell";
+    cout << "2-Dell\n>";
     cin >> pr;
     switch (pr)
     {
-        case(1): { s += 5000; cout << "1-Samsung" << endl; break; } 
-        case(2): { s += 6000; cout << "2-Dell" << endl; break; }
-    default: cout << "Ошибка!";
+        case 1:
+            s += 5000;
+            cout << "1-Samsung" << endl;
+            break;
+        case 2:
+            s += 6000;
+            cout << "2-Dell" << endl;
+            break;
+        default:
+            cout << "Ошибка!";
     }
     int ras; // размер экрана
     cout << "Выберите размер экрана:\n";
@@ -29,8 +36,10 @@ int main()
     cin >> ras;
     switch (ras)
     {
-        case(1): { s += 7000;  cout << "14 " << endl; break; }
-        case(2): { s += 8000; cout << "15 " << endl; break; }
+        case 1: s += 7000; cout << "14 " << endl; break;
+        case 2: s += 8000; cout << "15 " << endl; break;
+        default:
+          cout << "Ошибка!";
     }
     int r; //разрешение
     cout << "Выберите разрешение :\n";
@@ -39,8 +48,8 @@ int main()
     cin >> r;
     switch (r)
     {
-         case (1): { s += 9000;  cout << "720*1280" << endl; break; }
-        case(2): { s += 10000; cout << "520*1280" << endl ; break; }
+        case 1: s += 9000;  cout << "720*1280" << endl; break;
+        case 2: s += 10000; cout << "520*1280" << endl ; break;
     }
     int ch; // частота 
     cout << "Выберите кадровую частоту :\n";
@@ -49,8 +58,8 @@ int main()
     cin >> ch;
     switch (ch)
     {
-        case(1): { s += 11000; cout << "1-60" << endl; break; }
-        case(2): { s += 12000; cout << "2-120\n"; break; }
+        case 1: s += 11000; cout << "1-60" << endl; break;
+        case 2: s += 12000; cout << "2-120\n"; break;
     }
     cout << "Общая стоимость монитора: " << s << endl;
     return 0;
