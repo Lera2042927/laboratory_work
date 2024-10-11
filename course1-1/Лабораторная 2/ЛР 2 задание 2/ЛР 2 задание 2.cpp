@@ -16,17 +16,13 @@ int main()
     cout << "yi=y1+sin(x1)-0.5*xi " << endl;
     double x1 = 1;
     double y1 = 0.14;
-    double x2;
-    double y2;
-    cout << x1 << "|" << y1 << "|" << endl << setprecision(8);
-    for (int i = 2; i<=20; i++)
+    cout << setprecision(8);
+    for (int i = 1; i <= 20; i++)
     {
-        x2 = x1+y1;
-        y2 = y1 + sin(x1) - 0.5 * x2;
-        x1 = x2; y1 = y2;
-        cout << setw(20)<< x2 << "|" <<setw(20)<< y2 << "|" << endl;
-        
-
+        cout << setw(20) << x1 << "|" <<setw(20) << y1 << "|" << endl;
+        double x2 = x1 + y1;
+        y1 = y1 + sin(x1) - 0.5 * x2;
+        x1 = x2;
     }
     system("pause");
     return 0;
