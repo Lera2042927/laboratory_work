@@ -1,37 +1,12 @@
-﻿// ЛР 2 задание 2.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+﻿// ЛР 2-3  с++.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
-#include<cmath>
-#include<iomanip>
-#include <iostream>
-#include<cmath>
-using namespace std;
 
+#include <iostream>
 
 int main()
 {
-    setlocale(LC_ALL, "Russian");
-    cout << "Лабораторная работа №2 задание №1" << endl;
-    cout << "Напечатать значения очередной пары xi, y1 последовательностей: " << endl;
-    cout << "xi=x1+y1" << endl;
-    cout << "yi=y1+sin(x1)-0.5*xi " << endl;
-    double x1 = 1;
-    double y1 = 0.14;
-    double x2;
-    double y2;
-    cout << x1 << "|" << y1 << "|" << endl << setprecision(8);
-    for (int i = 2; i<=20; i++)
-    {
-        x2 = x1 + y1;
-        y2 = y1 + sin(x1) - 0.5 * x2;
-        x1 = x2; y1 = y2;
-        cout << setw(20)<< x2 << "|" <<setw(20)<< y2 << "|" << endl;
-        
-
-    }
-    system("pause");
-    return 0;
+    std::cout << "Hello World!\n";
 }
-
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
 // Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
