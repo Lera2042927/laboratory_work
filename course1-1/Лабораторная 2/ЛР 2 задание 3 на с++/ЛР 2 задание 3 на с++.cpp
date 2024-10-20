@@ -11,31 +11,30 @@ double f(int n)
 }
 int main()
 {
+	double e;
+	double pr;
+	double tc;
+	double sum;
+	int n = 1;
+
 	setlocale(LC_ALL, "Russian");
 	cout << "Лабораторная работа №2 задание №3" << endl;
 	cout << "Вычислите сумму сходящегося ряда ряда с заданной точностью;" << endl;
-	cout << "Введите значение точности e;" << endl;
-	double e;
+	cout << "Введите значение точности e:" << endl;
 	cin >> e;
-	scanf_s("%f", &e);
-	double pr;
-	double tc;
-	double sum = 0;
-	int n = 0;
-
+	
 	tc = f(n);
-	sum += tc;
-	n++;
+	sum = tc;
 	do
 	{
+		n++;
 		pr = tc;
 		tc = f(n);
 		sum += tc;
-		n++;
 	} while (abs(tc - pr) > e);
 	
-
 	cout << "Сумма сходящегося ряда равняется  " << sum << endl;
+	cout << "Количество итераций  " << n << endl;
 	
 	return 0;
 }
