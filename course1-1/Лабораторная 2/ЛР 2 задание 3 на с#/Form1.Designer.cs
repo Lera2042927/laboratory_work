@@ -37,6 +37,8 @@
             CalculateBtn = new Button();
             label4 = new Label();
             textBoxN = new TextBox();
+            listBox1 = new ListBox();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -119,11 +121,31 @@
             textBoxN.Size = new Size(125, 27);
             textBoxN.TabIndex = 8;
             // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.Location = new Point(534, 186);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(150, 104);
+            listBox1.TabIndex = 9;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(545, 148);
+            label5.Name = "label5";
+            label5.Size = new Size(124, 20);
+            label5.TabIndex = 10;
+            label5.Text = "Сходящийся ряд";
+            label5.Click += label5_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label5);
+            Controls.Add(listBox1);
             Controls.Add(textBoxN);
             Controls.Add(label4);
             Controls.Add(CalculateBtn);
@@ -152,5 +174,7 @@
         private Button CalculateBtn;
         private Label label4;
         private TextBox textBoxN;
+        private ListBox listBox1;
+        private Label label5;
     }
 }

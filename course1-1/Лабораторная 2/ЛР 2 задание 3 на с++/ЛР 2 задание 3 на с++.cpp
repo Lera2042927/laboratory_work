@@ -5,9 +5,9 @@
 #include <iostream>
 using namespace std;
 
-double f(int n)
+double f1(int n)
 {
-	return pow(n, 2) / pow(2 + 1 / n, n);
+	return pow(n, 2) / pow(2 + 1.0 / (n*1.0), n*1.0);
 }
 int main()
 {
@@ -19,17 +19,19 @@ int main()
 
 	setlocale(LC_ALL, "Russian");
 	cout << "Лабораторная работа №2 задание №3" << endl;
-	cout << "Вычислите сумму сходящегося ряда ряда с заданной точностью;" << endl;
+	cout << "Вычислите сумму сходящегося ряда an=n^2/(2+1/n)^n с заданной точностью;" << endl;
 	cout << "Введите значение точности e:" << endl;
 	cin >> e;
 	
-	tc = f(n);
+	tc = f1(n);
+	cout << "Элемент  " << fixed << setprecision(4) << tc << endl;
 	sum = tc;
 	do
 	{
 		n++;
 		pr = tc;
-		tc = f(n);
+		tc = f1(n);
+		cout << "Элемент  " << fixed<<setprecision(4)<< tc << endl;
 		sum += tc;
 	} while (abs(tc - pr) > e);
 	

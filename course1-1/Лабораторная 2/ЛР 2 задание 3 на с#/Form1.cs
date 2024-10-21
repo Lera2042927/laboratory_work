@@ -1,3 +1,5 @@
+using System.Windows.Forms;
+
 namespace ЛР_2_задание_3_на_с_
 {
     public partial class Form1 : Form
@@ -12,6 +14,7 @@ namespace ЛР_2_задание_3_на_с_
             double f(int n)
             {
                 return Math.Pow(n, 2) / Math.Pow(2 + 1 / n, n);
+                
             }
             double precision = Convert.ToDouble(textBoxE.Text);
             double pr;
@@ -27,8 +30,10 @@ namespace ЛР_2_задание_3_на_с_
                 pr = tc;
                 tc = f(n);
                 sum += tc;
+                var ste = pr.ToString("0.##########");
+                listBox1.Items.Add(ste);
             } while (Math.Abs(tc - pr) > precision);
-            Resultlabel.Text = "Результат: " + String.Format("{0:0.0000}", sum);
+            Resultlabel.Text = "Результат: " + String.Format("{0:0.000000000}", sum);
             textBoxN.Text = n.ToString();
 
 
@@ -41,6 +46,11 @@ namespace ЛР_2_задание_3_на_с_
         }
 
         private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
         {
 
         }

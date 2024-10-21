@@ -19,7 +19,7 @@ int main()
     cout << setprecision(8);
     for (int i = 1; i <= 20; i++)
     {
-        cout << setw(20) << x1 << "|" <<setw(20) << y1 << "|" << endl;
+        cout << setw(20) <<fixed<< setprecision(4)<< x1 << "|" <<setw(20) << y1 << "|" << endl;
         double x2 = x1 + y1;
         y1 = y1 + sin(x1) - 0.5 * x2;
         x1 = x2;
