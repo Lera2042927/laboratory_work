@@ -10,7 +10,7 @@ using namespace std;
 int main()
 {
     setlocale(LC_ALL, "Russian");
-    cout << "Лабораторная работа №2 задание №1" << endl;
+    cout << "Лабораторная работа №2 задание №2" << endl;
     cout << "Напечатать значения очередной пары xi, y1 последовательностей: " << endl;
     cout << "xi=x1+y1" << endl;
     cout << "yi=y1+sin(x1)-0.5*xi " << endl;
