@@ -49,7 +49,7 @@ int main()
     for (int i = 1; i < n; i++)
         if (arr[i] > arr[i_max]) i_max = i;
     cout << "Индекс максимального элемента: " << i_max << endl;
-
+    cout << "Максимальный элемент: " << arr[i_max] << endl;
     int pol_sum = 0; // для суммы положительных элементов массива
     for (int i = i_max+1; i < n; i++)
     {
