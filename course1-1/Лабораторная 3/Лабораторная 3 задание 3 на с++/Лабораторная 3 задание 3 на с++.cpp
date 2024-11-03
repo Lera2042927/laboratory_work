@@ -20,7 +20,7 @@ int main()
     cout << "Даны действительные числа a1,...an^2.Получить действительную квадратную матрицу, элементами которой являются числа" << endl;
     cout << "а1,...an^2, отсортированные по убыванию и расположенные в ней по схеме" << endl;
 
-    unsigned int n;
+    int n;
     unsigned int numbers_count; //число элементов в последовательности
     do {
         cout << "Введите n \n";
@@ -69,47 +69,30 @@ int main()
     int col = 0;
     for (unsigned int i = 0; i < numbers_count; i++)
     {
-        //циклы по матрице
-        if (row == min_row && step == 1) 
-        { // Поднялись вверх слева направо
-            matrix[row][col] = numbers[i];
-            if (col < (n - 1))
-                col += step;
-            else
-            {
-                min_row++;
-                row++;
-            }
-            step = -step;
+        matrix[row][col] = numbers[i];
+        col += step;
+        row -= step;
+        if (col >= n)
+        {
+          col--;
+          row += 2;
+          step = -step;
         }
-        else if (col == min_col && step == -1)
-        { // Опустились вниз справа налево
-            matrix[row][col] = numbers[i];
-            if (row < (n - 1))
-                row -= step;
-            else
-            {
-                min_col++;
-                col++;
-            }
-            step = -step;
+        else if (row >= n)
+        {
+          row--;
+          col += 2;
+          step = -step;
         }
-        else
-        { //идём по диагонали
-            matrix[row][col] = numbers[i];
-            if (col == n-1)
-            {
-                min_row++;
-                row++;
-                continue;
-            }
-            col += step;
-            if (row == n - 1)
-            {
-                min_col++;
-                col++;
-            }
-            row -= step;
+        else if (col < 0)
+        {
+          col = 0;
+          step = -step;
+        }
+        else if (row < 0)
+        {
+          row = 0;
+          step = -step;
         }
     }
 
