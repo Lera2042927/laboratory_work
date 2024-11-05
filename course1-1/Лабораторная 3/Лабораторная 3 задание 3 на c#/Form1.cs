@@ -118,6 +118,8 @@ namespace Лабораторная_3_задание_3_на_c_
             {
                 for (int j = 0; j < n; j++)
                 {
+                    dataGridView1.Rows[i].HeaderCell.Value = (i + 1).ToString();
+                    dataGridView1.Columns[j].HeaderCell.Value = (j + 1).ToString();
                     dataGridView1.Rows[i].Cells[j].Value = matrix[i, j];
                 }
             }

@@ -48,32 +48,15 @@ namespace Лабораторная_3_задание_2_на_c_
             {
                 for (int j = 0; j < l_col; j++)
                 {
+                    dataGridView1.Rows[i].HeaderCell.Value = (i + 1).ToString();
+                    dataGridView1.Columns[j].HeaderCell.Value = (j + 1).ToString();
                     dataGridView1.Rows[i].Cells[j].Value = arr[i, j];
                 }
             }
-            /* var column1 = new DataGridViewColumn();
-             column1.HeaderText = "Элементы массива";
-             column1.CellTemplate = new DataGridViewTextBoxCell();
-             dataGridView1.Columns.Add(column1);*/
-
-            /* for (int j = 0; j < l_col; j ++)
-             {   //var column1 = new DataGridViewColumn();
-                 int colIndex = dataGridView1.Columns.Add();
-                 arr[0,j] = rand.Next(min_limit, max_limit);
-                 dataGridView1.Columns[j].HeaderCell.Value = (j + 1).ToString();
-                 dataGridView1[0, j].Value = arr[0,j];
-             }*/
-
-
-            /*for (int i = 0; i < k_row; i++)
-            {
-                int rowIndex = dataGridView1.Rows.Add();
-                arr[i,0] = rand.Next(min_limit, max_limit);
-                dataGridView1.Rows[i].HeaderCell.Value = (i + 1).ToString();
-                dataGridView1[0, i].Value = arr[i,0];
-            }*/
-
+         
             // Подсчет положительных и отрицательных элементов
+            listBox1.Items.Clear();
+            listBox2.Items.Clear();
             for ( int i = 0; i < k_row; i++)
             {
                 for (int j = 0; j < l_col; j++)
@@ -81,23 +64,29 @@ namespace Лабораторная_3_задание_2_на_c_
                     if (arr[i,j] > 0)
                     {
                         B[i]++;
-                        var str = B[i].ToString("0.###");
-                        listBox1.Items.Add(str);
+                        /*var str = B[i].ToString("0.###");
+                        listBox1.Items.Add(str);*/
                     }
                     else if (arr[i,j] < 0)
                     {
                         C[i]++;
-                        var ste = C[i].ToString("0.###");
-                        listBox2.Items.Add(ste);
+                        /*var ste = C[i].ToString("0.###");
+                        listBox2.Items.Add(ste);*/
                     }
                 }
+            }
+            // Добавление результатов в ListBox после подсчета
+            for (int i = 0; i < k_row; i++)
+            {
+                listBox1.Items.Add(B[i]);
+                listBox2.Items.Add(C[i]);
             }
 
 
 
 
 
-            
+
 
 
 

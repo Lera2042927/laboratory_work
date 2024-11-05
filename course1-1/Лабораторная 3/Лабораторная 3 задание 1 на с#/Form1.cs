@@ -19,6 +19,7 @@ namespace Лабораторная_3_задание_1_на_с_
             int[] arr = new int[1000];
             Random rand = new Random();
 
+            DataGridView1.Columns.Clear();
             var column1 = new DataGridViewColumn();
             column1.HeaderText = "Элементы исходного массива";
             column1.CellTemplate = new DataGridViewTextBoxCell();

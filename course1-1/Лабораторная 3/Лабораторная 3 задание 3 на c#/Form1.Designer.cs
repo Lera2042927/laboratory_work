@@ -102,7 +102,7 @@
             listBoxN.FormattingEnabled = true;
             listBoxN.Location = new Point(21, 431);
             listBoxN.Name = "listBoxN";
-            listBoxN.Size = new Size(343, 104);
+            listBoxN.Size = new Size(458, 304);
             listBoxN.TabIndex = 6;
             // 
             // label5
@@ -126,7 +126,7 @@
             // 
             // CalculateBtn
             // 
-            CalculateBtn.Location = new Point(671, 344);
+            CalculateBtn.Location = new Point(375, 344);
             CalculateBtn.Name = "CalculateBtn";
             CalculateBtn.Size = new Size(188, 29);
             CalculateBtn.TabIndex = 10;
@@ -140,14 +140,14 @@
             dataGridView1.Location = new Point(642, 136);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(300, 188);
+            dataGridView1.Size = new Size(576, 526);
             dataGridView1.TabIndex = 11;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(995, 564);
+            ClientSize = new Size(1230, 767);
             Controls.Add(dataGridView1);
             Controls.Add(CalculateBtn);
             Controls.Add(label6);
