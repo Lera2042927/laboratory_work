@@ -44,12 +44,18 @@ namespace Лабораторная_3_задание_2_на_c_
             // Отображение массива в DataGridView
             dataGridView1.ColumnCount = l_col;
             dataGridView1.RowCount = k_row;
+            // Заполнение хидера колонок
+            for (int i = 0; i < l_col; i++)
+                dataGridView1.Columns[i].HeaderCell.Value = (i + 1).ToString();
+
+            // Заполнение таблицы
             for (int i = 0; i < k_row; i++)
             {
+                // Номера строк
+                dataGridView1.Rows[i].HeaderCell.Value = (i + 1).ToString();
+                // Данные
                 for (int j = 0; j < l_col; j++)
                 {
-                    dataGridView1.Rows[i].HeaderCell.Value = (i + 1).ToString();
-                    dataGridView1.Columns[j].HeaderCell.Value = (j + 1).ToString();
                     dataGridView1.Rows[i].Cells[j].Value = arr[i, j];
                 }
             }
@@ -81,15 +87,6 @@ namespace Лабораторная_3_задание_2_на_c_
                 listBox1.Items.Add(B[i]);
                 listBox2.Items.Add(C[i]);
             }
-
-
-
-
-
-
-
-
-
         }
     }
 }

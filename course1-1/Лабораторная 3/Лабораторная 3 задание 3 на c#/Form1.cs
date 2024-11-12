@@ -77,8 +77,6 @@ namespace Лабораторная_3_задание_3_на_c_
 
             // Заполнение матрицы числами по схеме
             // step +1 или -1 для смены направления движения
-            int min_row = 0;
-             int min_col = 0;
             int step = 1;
             int row = 0;
             int col = 0;
@@ -116,18 +114,13 @@ namespace Лабораторная_3_задание_3_на_c_
             dataGridView1.RowCount = n;
             for (int i = 0; i < n; i++)
             {
+                dataGridView1.Rows[i].HeaderCell.Value = (i + 1).ToString();
+                dataGridView1.Columns[i].HeaderCell.Value = (i + 1).ToString();
                 for (int j = 0; j < n; j++)
                 {
-                    dataGridView1.Rows[i].HeaderCell.Value = (i + 1).ToString();
-                    dataGridView1.Columns[j].HeaderCell.Value = (j + 1).ToString();
                     dataGridView1.Rows[i].Cells[j].Value = matrix[i, j];
                 }
             }
-
-
-
-
-
         }
     }
 }
