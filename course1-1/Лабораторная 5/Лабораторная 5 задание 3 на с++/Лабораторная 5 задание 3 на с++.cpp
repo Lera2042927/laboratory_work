@@ -6,29 +6,26 @@
 using namespace std;
 #define MAX_ARRAY 1000
 
-void removeMultiples(int*& arr, int& size, int multiple) // Удалить кратные значения; int*& arr,-указатель на массив,который мы будем заменять
-{  //int& size: ссылка на переменную, содержащую размер массива. Мы будем изменять размер массива в этой функции.
-    //int multiple : число, кратные которому нужно удалить из массива.
-    
-    // Создаем новый массив для хранения оставшихся элементов
-    int* newArr = new int[size];
-    int newSize = 0;
+// arr - исходный массив
+// size - размер массива
+// multiple - число, кратно которому нужно удалить
+void removeMultiples(int*& arr, int& size, int multiple) // Удалить кратные значения; 
+{
+    int offset = 0; // счётчик некратных элементов
 
     // Копируем элементы, которые не кратны заданному числу
     for (int i = 0; i < size; i++)
-    {
-        if (arr[i] % multiple != 0) 
+    {   
+        int value = arr[i];
+        if ((value % multiple )!= 0) 
         {
-            newArr[newSize++] = arr[i];
+            arr[offset] = value;
+            offset++;
         }
     }
 
-    // Освобождаем старый массив
-    delete[] arr;
-
     // Обновляем указатель и размер
-    arr = newArr;
-    size = newSize;
+    size = offset;
 }
 
 int main()

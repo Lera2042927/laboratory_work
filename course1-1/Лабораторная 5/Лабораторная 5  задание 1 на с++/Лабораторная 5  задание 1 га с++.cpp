@@ -5,33 +5,10 @@
 using namespace std;
 #define MIN_LIMIT 10
 #define MAX_LIMIT 80
+#define MIN_Y_LIMIT 1
+#define MAX_Y_LIMIT 10
 #define MAX_N 10
 
-void repeatElements(double* X, int* Y, int N) {
-    // Выделяем память для результирующего массива
-    int resultSize = 0;
-    for (int i = 0; i < N; ++i) {
-        resultSize += Y[i];
-    }
-    double* result = new double[resultSize];
-
-    // Копируем элементы X в result с повторением
-    int index = 0;
-    for (int i = 0; i < N; ++i) {
-        for (int j = 0; j < Y[i]; ++j) {
-            result[index++] = X[i];
-        }
-    }
-    // Вывод результирующего массива
-    cout << "Результирующий массив: ";
-    for (int i = 0; i < resultSize; ++i) {
-        cout << result[i] << " ";
-    }
-    cout << endl;
-
-    // Освобождаем память
-    delete[] result;
-}
 
 int main()
 {
@@ -48,23 +25,37 @@ int main()
             cout << "n не может быть больше " << MAX_N << endl << endl;
     } while (n > MAX_N);
    
-    double* X = new double[n];
+    
     int* Y = new int[n];
-    int delta = MAX_LIMIT - MIN_LIMIT + 1;
+    int delta = MAX_Y_LIMIT - MIN_Y_LIMIT + 1;
     // Заполняем массив случайными элементами
     srand(time(0));
+    int total_count = 0; // максимальный количество элементов массива X
     for  (int i = 0; i < n; i++)
     {
-        X[i] = MIN_LIMIT + ((double)rand()) / RAND_MAX * (MAX_LIMIT - MIN_LIMIT); //диапазон
-        cout << X[i] << " ";
-        Y[i] = MIN_LIMIT + rand() % delta; //диапазон
-        cout << Y[i] << " ";
+        int y = MIN_Y_LIMIT+ rand() % delta; //диапазон
+        Y[i] = y;
+        total_count += y;
+    }
+    delta = MAX_LIMIT - MIN_LIMIT + 1;
+    double* X = new double[total_count];
+    int offset = 0; //смещение текущего вещественного числа в массеве Х (от начала массива)
+    for  (int i = 0; i < n; i++)
+    {
+        double x = MIN_LIMIT + ((double)rand()) / RAND_MAX * (MAX_LIMIT - MIN_LIMIT); //диапазон
+
+        for (int j = 0; j < Y[i]; j++) // дублируем столько раз, сколько указанно в Y[i]
+        {
+            X[offset] = x;
+            offset++;
+        }
+        
     }
     cout << endl;
 
     // Вывод массивов X и Y
     cout << "Массив X: ";
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < total_count; ++i) {
        cout << X[i] << " ";
     }
     cout << endl;
@@ -74,9 +65,6 @@ int main()
         cout << Y[i] << " ";
     }
     cout << endl;
-
-    // Вызов функции для повторения элементов
-    repeatElements(X, Y, n);
 
     // Освобождаем память
     delete[] X;
