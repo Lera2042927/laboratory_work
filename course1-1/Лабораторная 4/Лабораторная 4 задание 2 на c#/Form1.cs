@@ -53,11 +53,7 @@ namespace Лабораторная_4_задание_2_на_c_
                 B[i] = Enumerable.Range(0, l_col).Count(j => arr[i, j] > 0); // подсчет положительных
                 C[i] = Enumerable.Range(0, l_col).Count(j => arr[i, j] < 0); // подсчет отрицательных
             }
-            var positiveInFirstRow = Enumerable.Range(0, l_col)
-           .Select(j => arr[0, j])
-           .Where(x => x > 0)
-           .ToList();
-
+        
 
             // Добавление результатов в ListBox после подсчета
             for (int i = 0; i < k_row; i++)

@@ -13,7 +13,7 @@ int arr_X[M1_X_Row][N1_X_Colum];
 int arr_Y[M2_Y_Row][N2_Y_Colum];
 
 
-
+/*
 void createDifference(double** X, double** Y, double** result1, double** result2, int M1_row, int N1_colum, int M2_row, int N2_colum) 
 {
     // Заполнение первого результирующего массива
@@ -34,7 +34,7 @@ void createDifference(double** X, double** Y, double** result1, double** result2
             }
         }
     }
-}
+}*/
 
 int main()
 {
@@ -80,67 +80,137 @@ int main()
             cout << "Количество столбцов не может быть больше " << N2_Y_Colum << endl << endl;
     } while (N2_colum > N2_Y_Colum);
 
-    // Выделение памяти для массивов X и Y
-    double** X = new double* [M1_X_Row];
-    double** Y = new double* [M2_Y_Row];
-    for (int i = 0; i < M1_row; i++) {
-        X[i] = new double[N1_X_Colum];
-    }
-    for (int i = 0; i < M2_row; i++) {
-        Y[i] = new double[N2_Y_Colum];
-    }
+// Выделение памяти для массивов X и Y
+/*double** X = new double* [M1_X_Row];
+double** Y = new double* [M2_Y_Row];
+for (int i = 0; i < M1_row; i++) {
+    X[i] = new double[N1_X_Colum];
+}
+for (int i = 0; i < M2_row; i++) {
+    Y[i] = new double[N2_Y_Colum];
+}*/
 
-    do {
-        cout << "Введите нижний предел двумерного массива \n";
-        cin >> min_limit;
-        cout << "Введите верхний предел двумерного массива \n";
-        cin >> max_limit;
-        if (min_limit >= max_limit)
-            cout << "Минимальный лимит не может быть больше максимального лимита \n\n";
-    } while (min_limit >= max_limit);
+do {
+    cout << "Введите нижний предел двумерного массива \n";
+    cin >> min_limit;
+    cout << "Введите верхний предел двумерного массива \n";
+    cin >> max_limit;
+    if (min_limit >= max_limit)
+        cout << "Минимальный лимит не может быть больше максимального лимита \n\n";
+} while (min_limit >= max_limit);
 
-    int delta = max_limit - min_limit + 1;
-    srand(time(NULL));
-    for (unsigned int i = 0; i < M1_row; i++)
+int delta = max_limit - min_limit + 1;
+srand(time(NULL));
+for (unsigned int i = 0; i < M1_row; i++)
+{
+    for (unsigned int j = 0; j < N1_colum; j++)
     {
-        for (unsigned int j = 0; j < N1_colum; j++)
+        arr_X[i][j] = min_limit + rand() % delta; //диапазон
+        cout << arr_X[i][j] << " ";
+    }
+    cout << endl;
+}
+cout << endl;
+
+for (unsigned int i = 0; i < M2_row; i++)
+{
+    for (unsigned int j = 0; j < N2_colum; j++)
+    {
+        arr_Y[i][j] = min_limit + rand() % delta; //диапазон
+        cout << arr_Y[i][j] << " ";
+    }
+    cout << endl;
+}
+cout << endl;
+
+/*// Вывод массивов X и Y
+cout << "Массив X: ";
+for (int i = 0; i < M1_row; ++i)
+{
+    for ( int j = 0; j < N1_colum; j++)
+    cout << X[i] << " ";
+}
+cout << endl;
+
+cout << "Массив Y: ";
+for (int i = 0; i < M2_row; ++i)
+{
+    for (int j = 0; j < N2_colum; j++)
+    cout << Y[i] << " ";
+}
+cout << endl;*/
+// Выделение памяти для результирующих массивов
+double** result1 = new double* [M2_Y_Row];
+double** result2 = new double* [M1_X_Row];
+for (int i = 0; i < M2_row; i++) {
+    result1[i] = new double[N2_Y_Colum];
+}
+for (int i = 0; i < M1_row; i++) {
+    result2[i] = new double[N1_X_Colum];
+}
+
+// Создание разности массивов
+//createDifference(X, Y, result1, result2, M1_row, N1_colum, M2_row, N2_colum);
+// Вычисление разности и заполнение массивов
+/* for (int i = 0; i < M1_row; ++i) {
+     for (int j = 0; j < N1_colum; ++j) {
+         if (i < M2_row && j < N2_colum) {
+             result1[i][j] = X[i][j] - Y[i][j]; // Разность для первого массива
+             result2[i][j] = X[i][j] - Y[i][j]; // Разность для второго массива
+         }
+         else {
+             result1[i][j] = X[i][j]; // Элемент остается без изменений
+             result2[i][j] = (i < M2_row && j < N2_colum) ? 0 : X[i][j]; // Элемент остается без изменений
+         }
+     }
+ }*/
+for (int i = 0; i < M1_row; i++) // заполнение первого результиирующего массива
+{
+    for (int j = 0; j < N1_colum; j++)
+    {
+        if (i >= M1_row - M2_row && j >= N1_colum - N2_colum)
         {
-            arr_X[i][j] = min_limit + rand() % delta; //диапазон
+            result1[i][j] = arr_X[i][j];
+        }
+    }
+}
+// заполнение второго результирующего массива
+for (int i = 0; i < M2_row; i++)
+{
+    for (int j = 0; j < N2_colum; j++)
+    {
+        if (i >= M1_row - M2_row && j >= N1_colum - N2_colum)
+        {
+            result2[i][j] = arr_Y[i][j];
+        }
+
+    }
+}
+
+    // Вывод массивов
+    cout << "Массив X (M1, N1):" << endl;
+    for (int i = 0; i < M1_row; ++i) {
+        for (int j = 0; j < N1_colum; ++j) {
             cout << arr_X[i][j] << " ";
         }
         cout << endl;
     }
-    cout << endl;
 
-    for (unsigned int i = 0; i < M2_row; i++)
-    {
-        for (unsigned int j = 0; j < N2_colum; j++)
-        {
-            arr_Y[i][j] = min_limit + rand() % delta; //диапазон
+    cout << "Массив Y (M2, N2):" << endl;
+    for (int i = 0; i < M2_row; ++i) {
+        for (int j = 0; j < N2_colum; ++j) {
             cout << arr_Y[i][j] << " ";
         }
         cout << endl;
     }
-    cout << endl;
 
-    // Выделение памяти для результирующих массивов
-    double** result1 = new double* [M2_Y_Row];
-    double** result2 = new double* [M1_X_Row];
-    for (int i = 0; i < M2_row; i++) {
-        result1[i] = new double[N2_Y_Colum];
-    }
-    for (int i = 0; i < M1_row; i++) {
-        result2[i] = new double[N1_X_Colum];
-    }
- 
-    // Создание разности массивов
-    createDifference(X, Y, result1, result2, M1_row, N1_colum, M2_row, N2_colum);
+
 
     // Вывод результирующего массива 1
     cout << "Результирующий массив 1 (разность X и Y):" << endl;
-    for (int i = 0; i < M2_row; i++) 
+    for (int i = 0; i < M1_row; i++) 
     {
-        for (int j = 0; j < N2_colum; j++) 
+        for (int j = 0; j < N1_colum; j++) 
         {
             cout << result1[i][j] << " ";
         }
@@ -161,15 +231,15 @@ int main()
     // Освобождение памяти
     for (unsigned int i = 0; i < M1_row; i++) 
     {
-        delete[] X[i];
+        delete[] arr_X[i];
     }
-    delete[] X;
+    delete[] arr_X;
 
     for (unsigned int i = 0; i < M2_row; i++) 
     {
-        delete[] Y[i];
+        delete[] arr_Y[i];
     }
-    delete[] Y;
+    delete[] arr_Y;
 
     for (unsigned int i = 0; i < M2_row; i++) 
     {

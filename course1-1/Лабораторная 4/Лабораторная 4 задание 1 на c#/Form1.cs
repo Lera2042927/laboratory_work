@@ -37,24 +37,31 @@ namespace Лабораторная_4_задание_1_на_c_
             /*t Index_of_max_value = 0;  для индекса максимального элемента
             for (int i = 1; i < arr.Length; i++)
                 if (arr[i] > arr[Index_of_max_value]) Index_of_max_value = i;*/
+            int[] Positiv_array = new int[size-maxIndex];   //иначе +1
+           
+            Array.Copy(arr,maxIndex+1, Positiv_array,0,size-maxIndex);// копировать все числа после макс
 
-            int positive_value = 0; // для суммы положительных элементов массива
-            for (int i = maxIndex + 1; i < arr.Length; i++)
+             int positive_sum = 0; // для суммы положительных элементов массива
+          
+            for (int i = 0; i < Positiv_array.Length; i++)
             {
-                int x = arr[i];
-                if (x > 0) positive_value += x;
+                int x = Positiv_array[i];
+                if (x > 0) positive_sum += x;
             }
-
-            int negative_value = 0; // для суммы отрицательных элементов массива
+            int[] Negativ_array = new int[maxIndex-1];
+            Array.Copy(arr, 0 , Negativ_array, 0 ,maxIndex-1);
+            int negative_sum = 0; // для суммы отрицательных элементов массива
+  
             for (int i = 0; i < maxIndex; i++)
             {
-                int x = arr[i];
-                if (x < 0) negative_value += x;
+                int x = Negativ_array[i];
+                if (x < 0) negative_sum += x;
             }
 
+
             textBoxMaxValue.Text = arr[maxIndex].ToString();
-            textBoxPositive_Sum.Text = positive_value.ToString();
-            textBoxNegative_Sum.Text = negative_value.ToString();
+            textBoxPositive_Sum.Text = positive_sum.ToString();
+            textBoxNegative_Sum.Text = negative_sum.ToString();
 
 
         }
