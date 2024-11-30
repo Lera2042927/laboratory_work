@@ -45,12 +45,9 @@ void fillArray(double** arr, unsigned int row_count, unsigned int col_count, int
             {
                 double value = min_limit + rand() % delta; //диапазон
                 row[j] = value;
-                cout << value << ", ";
             }
-            cout << endl;
         }
     }
-    cout << endl;
 }
 
 void printArry(double** arr, unsigned int row_count, unsigned int col_count)
@@ -65,7 +62,7 @@ void printArry(double** arr, unsigned int row_count, unsigned int col_count)
         {
             for (int j = 0; j < col_count; j++)
             {
-                cout << row[j] << ", ";
+                cout << row[j] << ",\t";
             }
             cout << endl;
         }
@@ -159,10 +156,13 @@ int main()
     srand(time(NULL));
 
     //Заполение массивов X Y
-    cout << "Массив X:\n";
     fillArray(X, x_row_count, x_col_count, min_limit, max_limit);
-    cout << "\nМассив Y:\n";
+    cout << "Массив X:\n";
+    printArry(X, x_row_count, x_col_count);
+
     fillArray(Y, y_row_count, y_col_count, min_limit, max_limit);
+    cout << "\nМассив Y:\n";
+    printArry(Y, y_row_count, y_col_count);
     cout << endl;
 
     // Расчет двух результирующих массивов.
@@ -184,19 +184,19 @@ int main()
     // |--------------|
     // 
     
-    // Вариант 1
+    // Вариант 2
     // Расчет размерности массивов
-    // 1
-    unsigned int row_copy_from = y_row_count;
+    // 2
+    unsigned int col_copy_from = y_col_count;
 
     // Результирующий массив 1 (result1)
-    unsigned int r1_row_count = x_row_count - y_row_count;
-    unsigned int r1_col_count = x_col_count;
+    unsigned int r1_row_count = x_row_count;
+    unsigned int r1_col_count = x_col_count - y_col_count;
     double** result1 = new double* [r1_row_count];
 
     for (unsigned int i = 0; i < r1_row_count; i++)
     {
-        double* from = X[row_copy_from + i];
+        double* from = &X[i][col_copy_from];
         double* to = new double [r1_col_count];
         //memcpy(to, from, sizeof(double) * r1_col_count);
         for (unsigned int j = 0; j < r1_col_count; j++)
@@ -207,21 +207,19 @@ int main()
     }
 
     // Результирующий массив 2 (result2)
-    unsigned int col_copy_from = y_col_count;
-    unsigned int r2_row_count = y_row_count;
-    unsigned int r2_col_count = x_col_count - y_col_count;
+    unsigned int row_copy_from = y_row_count;
+    unsigned int r2_row_count = x_row_count - y_row_count;
+    unsigned int r2_col_count = y_col_count;
     double** result2 = new double* [r2_row_count];
 
     for (unsigned int i = 0; i < r2_row_count; i++)
     {
-        double* from = &X[i][col_copy_from];
-        //double* from = X[i];
+        double* from = X[row_copy_from + i];
         double* to = new double[r2_col_count];
         //memcpy(to, from, sizeof(double) * r2_col_count);
         for (unsigned int j = 0; j < r2_col_count; j++)
         {
             to[j] = from[j];
-            //to[j] = from[col_copy_from + j];
         }
         result2[i] = to;
     }
