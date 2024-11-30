@@ -45,12 +45,9 @@ void fillArray(double** arr, unsigned int row_count, unsigned int col_count, int
             {
                 double value = min_limit + rand() % delta; //диапазон
                 row[j] = value;
-                cout << value << ", ";
             }
-            cout << endl;
         }
     }
-    cout << endl;
 }
 
 void printArry(double** arr, unsigned int row_count, unsigned int col_count)
@@ -65,7 +62,7 @@ void printArry(double** arr, unsigned int row_count, unsigned int col_count)
         {
             for (int j = 0; j < col_count; j++)
             {
-                cout << row[j] << ", ";
+                cout << row[j] << ",\t";
             }
             cout << endl;
         }
@@ -159,10 +156,13 @@ int main()
     srand(time(NULL));
 
     //Заполение массивов X Y
-    cout << "Массив X:\n";
     fillArray(X, x_row_count, x_col_count, min_limit, max_limit);
-    cout << "\nМассив Y:\n";
+    cout << "Массив X:\n";
+    printArry(X, x_row_count, x_col_count);
+
     fillArray(Y, y_row_count, y_col_count, min_limit, max_limit);
+    cout << "\nМассив Y:\n";
+    printArry(Y, y_row_count, y_col_count);
     cout << endl;
 
     // Расчет двух результирующих массивов.
