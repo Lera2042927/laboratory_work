@@ -28,35 +28,40 @@ int main()
     
     int* Y = new int[n];
     int delta = MAX_Y_LIMIT - MIN_Y_LIMIT + 1;
-    // Заполняем массив случайными элементами
-    srand(time(0));
+    
     int total_count = 0; // максимальный количество элементов массива X
+    double* X = new double[n]; //Массив Х исходных вещественных чисел
+
+    // Заполняем массив Y случайными элементами
+    srand(time(0));
     for  (int i = 0; i < n; i++)
     {
         int y = MIN_Y_LIMIT+ rand() % delta; //диапазон
         Y[i] = y;
         total_count += y;
     }
+   
     delta = MAX_LIMIT - MIN_LIMIT + 1;
-    double* X = new double[total_count];
-    int offset = 0; //смещение текущего вещественного числа в массеве Х (от начала массива)
-    for  (int i = 0; i < n; i++)
-    {
-        double x = MIN_LIMIT + ((double)rand()) / RAND_MAX * (MAX_LIMIT - MIN_LIMIT); //диапазон
 
-        for (int j = 0; j < Y[i]; j++) // дублируем столько раз, сколько указанно в Y[i]
-        {
-            X[offset] = x;
+    double* expanded_X = new double[total_count]; // Массив для расширенного X (результирующий)
+    // Заполняем  исходный массив X случайными вещественными числами в диапазоне [MIN_LIMIT, MAX_LIMIT]
+    for (int i = 0; i < n; i++) {
+        X[i] = MIN_LIMIT + ((double)rand()) / RAND_MAX * (MAX_LIMIT - MIN_LIMIT); // диапазон для массива X
+    }
+
+    int offset = 0; //смещение текущего вещественного числа в массеве Х (от начала массива)
+    // Заполняем массив expanded_X, повторяя элементы массива X по количеству в Y
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < Y[i]; j++) {
+            expanded_X[offset] = X[i];
             offset++;
         }
-        
     }
-    cout << endl;
 
     // Вывод массивов X и Y
-    cout << "Массив X: ";
+    cout << "Массив X (результирующий): ";
     for (int i = 0; i < total_count; ++i) {
-       cout << X[i] << " ";
+       cout << expanded_X[i] << " ";
     }
     cout << endl;
 
@@ -66,9 +71,16 @@ int main()
     }
     cout << endl;
 
+    cout << "Исходный массив X: ";
+    for (int i = 0; i < n; ++i) {
+        cout << X[i] << " ";
+    }
+    cout << endl;
+
     // Освобождаем память
     delete[] X;
     delete[] Y;
+    delete[] expanded_X;
 
     return 0;
 }

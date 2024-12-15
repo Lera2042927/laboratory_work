@@ -4,17 +4,11 @@
 #include<iomanip>
 #include <iostream>
 using namespace std;
-#define M1_X_Row 1000
-#define N1_X_Colum 1000
-#define M2_Y_Row 1000
-#define N2_Y_Colum 1000
-
-int arr_X[M1_X_Row][N1_X_Colum];
-int arr_Y[M2_Y_Row][N2_Y_Colum];
-
+#define ARRAY_X_ROW_MAX 100
+#define ARRAY_X_COL_MAX 100
 
 /*
-void createDifference(double** X, double** Y, double** result1, double** result2, int M1_row, int N1_colum, int M2_row, int N2_colum) 
+void createDifference(double** X, double** Y, double** result1, double** result2, int M1_row, int N1_colum, int M2_row, int N2_colum)
 {
     // Заполнение первого результирующего массива
     for (int i = 0; i < M2_Y_Row; ++i) {
@@ -35,6 +29,63 @@ void createDifference(double** X, double** Y, double** result1, double** result2
         }
     }
 }*/
+// Функция заполнения массива случайными числами
+void fillArray(double** arr, unsigned int row_count, unsigned int col_count, int min_limit, int max_limit)
+{
+    if (arr == nullptr)
+        return;
+
+    int delta = max_limit - min_limit + 1;
+    for (unsigned int i = 0; i < row_count; i++)
+    {
+        double* row = arr[i];
+        if (row)
+        {
+            for (unsigned int j = 0; j < col_count; j++)
+            {
+                double value = min_limit + rand() % delta; //диапазон
+                row[j] = value;
+            }
+        }
+    }
+}
+ //Вывод массива
+void printArry(double** arr, unsigned int row_count, unsigned int col_count)
+{
+    if (arr == nullptr)
+        return;
+
+    for (int i = 0; i < row_count; i++)
+    {
+        double* row = arr[i];
+        if (row)
+        {
+            for (int j = 0; j < col_count; j++)
+            {
+                cout << row[j] << ",\t";
+            }
+            cout << endl;
+        }
+    }
+}
+
+void freeArray(double** arr, unsigned int row_count)
+{
+    if (arr)
+    {
+        for (int i = 0; i < row_count; i++)
+        {
+            double* row = arr[i];
+            if (row)
+            {
+                delete[] row;
+                // Если массив будет использоваться дальше, то освобожденный указаель надо обнулить
+                //arr[i] = nullptr;
+            }
+        }
+        delete arr;
+    }
+}
 
 int main()
 {
@@ -43,219 +94,151 @@ int main()
     cout << "Заданы массивы X(M1,N1) и Y(M2,N2) (M1>M2, N1>N2). " << endl;
     cout << "Создать два новых двумерных массива, полученных как «разность» массивов X и Y." << endl;
 
-    unsigned int M1_row;
-    unsigned int N1_colum;
-    unsigned int M2_row;
-    unsigned int N2_colum;
+    unsigned int x_row_count;
+    unsigned int x_col_count;
+    unsigned int y_row_count;
+    unsigned int y_col_count;
 
     int min_limit;
     int max_limit;
-    
-    do {
-        cout << "Введите количество строк двумерного массива X \n";
-        cin >> M1_row;
-        if (M1_row > M1_X_Row)
-            cout << "Количество строк не может быть больше " << M1_X_Row << endl << endl;
-    } while (M1_row > M1_X_Row);
 
     do {
-        cout << "Введите количество столбцов двумерного массива X \n ";
-        cin >> N1_colum;
-        if (N1_colum > N1_X_Colum)
-            cout << "Количество столбцов не может быть больше " << N1_X_Colum << endl << endl;
-    } while (N1_colum > N1_X_Colum);
-
-
-    do {
-        cout << "Введите количество строк двумерного массива Y \n";
-        cin >> M2_row;
-        if (M2_row > M2_Y_Row)
-            cout << "Количество строк не может быть больше " << M2_Y_Row << endl << endl;
-    } while (M2_row > M2_Y_Row);
+        cout << "Введите количество строк двумерного массива X:\n";
+        cin >> x_row_count;
+        if (x_row_count > ARRAY_X_ROW_MAX)
+            cout << "Количество строк не может быть больше " << ARRAY_X_ROW_MAX << endl << endl;
+    } while (x_row_count > ARRAY_X_ROW_MAX);
 
     do {
-        cout << "Введите количество столбцов двумерного массива Y \n ";
-        cin >> N2_colum;
-        if (N2_colum > N2_Y_Colum)
-            cout << "Количество столбцов не может быть больше " << N2_Y_Colum << endl << endl;
-    } while (N2_colum > N2_Y_Colum);
+        cout << "Введите количество столбцов двумерного массива X:\n";
+        cin >> x_col_count;
+        if (x_col_count > ARRAY_X_COL_MAX)
+            cout << "Количество столбцов не может быть больше " << ARRAY_X_COL_MAX << endl << endl;
+    } while (x_col_count > ARRAY_X_COL_MAX);
 
-// Выделение памяти для массивов X и Y
-/*double** X = new double* [M1_X_Row];
-double** Y = new double* [M2_Y_Row];
-for (int i = 0; i < M1_row; i++) {
-    X[i] = new double[N1_X_Colum];
-}
-for (int i = 0; i < M2_row; i++) {
-    Y[i] = new double[N2_Y_Colum];
-}*/
+    // Массив Y должен быть размерностью меньше чем массив X
+    do {
+        cout << "Введите количество строк двумерного массива Y:\n";
+        cin >> y_row_count;
+        if (y_row_count >= x_row_count)
+            cout << "Количество строк массива Y должно быть меньше " << x_row_count << endl << endl;
+    } while (y_row_count >= x_row_count);
 
-do {
-    cout << "Введите нижний предел двумерного массива \n";
-    cin >> min_limit;
-    cout << "Введите верхний предел двумерного массива \n";
-    cin >> max_limit;
-    if (min_limit >= max_limit)
-        cout << "Минимальный лимит не может быть больше максимального лимита \n\n";
-} while (min_limit >= max_limit);
+    do {
+        cout << "Введите количество столбцов двумерного массива Y:\n";
+        cin >> y_col_count;
+        if (y_col_count >= x_col_count)
+            cout << "Количество столбцов массива Y должно быть меньше " << x_col_count << endl << endl;
+    } while (y_col_count >= x_col_count);
 
-int delta = max_limit - min_limit + 1;
-srand(time(NULL));
-for (unsigned int i = 0; i < M1_row; i++)
-{
-    for (unsigned int j = 0; j < N1_colum; j++)
+    do {
+        cout << "Введите нижний предел двумерного массива:\n";
+        cin >> min_limit;
+        cout << "Введите верхний предел двумерного массива:\n";
+        cin >> max_limit;
+        if (min_limit >= max_limit)
+            cout << "Минимальный лимит должен быть меньше максимального лимита\n\n";
+    } while (min_limit >= max_limit);
+
+    // Выделение памяти для массива X
+    double** X = new double* [x_row_count];
+    for (int i = 0; i < x_row_count; i++)
     {
-        arr_X[i][j] = min_limit + rand() % delta; //диапазон
-        cout << arr_X[i][j] << " ";
+        X[i] = new double[x_col_count];
     }
+
+    // Выделение памяти для массива Y
+    double** Y = new double* [y_row_count];
+    for (int i = 0; i < y_row_count; i++) {
+        Y[i] = new double[y_col_count];
+    }
+
+    srand(time(NULL));
+
+    //Заполение массивов X Y
+    fillArray(X, x_row_count, x_col_count, min_limit, max_limit);
+    cout << "Массив X:\n";
+    printArry(X, x_row_count, x_col_count);
+
+    fillArray(Y, y_row_count, y_col_count, min_limit, max_limit);
+    cout << "\nМассив Y:\n";
+    printArry(Y, y_row_count, y_col_count);
     cout << endl;
-}
-cout << endl;
 
-for (unsigned int i = 0; i < M2_row; i++)
-{
-    for (unsigned int j = 0; j < N2_colum; j++)
+    // Расчет двух результирующих массивов.
+    // 
+    // Вариант1.
+    // +--------------+
+    // | X - Y |  2   |
+    // |--------------|
+    // |              |
+    // |      1       |
+    // |              |
+    // |--------------|
+    // 
+    // Вариант2.
+    // +--------------+
+    // | X - Y |  1   |
+    // |-------+      |
+    // |   2   |      |
+    // |--------------|
+    // 
+
+    // Вариант 2
+    // Расчет размерности массивов
+    // 2
+    unsigned int col_copy_from = y_col_count;
+
+    // Результирующий массив 1 (result1)
+    unsigned int r1_row_count = x_row_count;
+    unsigned int r1_col_count = x_col_count - y_col_count;
+    double** result1 = new double* [r1_row_count];
+
+    for (unsigned int i = 0; i < r1_row_count; i++)
     {
-        arr_Y[i][j] = min_limit + rand() % delta; //диапазон
-        cout << arr_Y[i][j] << " ";
-    }
-    cout << endl;
-}
-cout << endl;
-
-/*// Вывод массивов X и Y
-cout << "Массив X: ";
-for (int i = 0; i < M1_row; ++i)
-{
-    for ( int j = 0; j < N1_colum; j++)
-    cout << X[i] << " ";
-}
-cout << endl;
-
-cout << "Массив Y: ";
-for (int i = 0; i < M2_row; ++i)
-{
-    for (int j = 0; j < N2_colum; j++)
-    cout << Y[i] << " ";
-}
-cout << endl;*/
-// Выделение памяти для результирующих массивов
-double** result1 = new double* [M2_Y_Row];
-double** result2 = new double* [M1_X_Row];
-for (int i = 0; i < M2_row; i++) {
-    result1[i] = new double[N2_Y_Colum];
-}
-for (int i = 0; i < M1_row; i++) {
-    result2[i] = new double[N1_X_Colum];
-}
-
-// Создание разности массивов
-//createDifference(X, Y, result1, result2, M1_row, N1_colum, M2_row, N2_colum);
-// Вычисление разности и заполнение массивов
-/* for (int i = 0; i < M1_row; ++i) {
-     for (int j = 0; j < N1_colum; ++j) {
-         if (i < M2_row && j < N2_colum) {
-             result1[i][j] = X[i][j] - Y[i][j]; // Разность для первого массива
-             result2[i][j] = X[i][j] - Y[i][j]; // Разность для второго массива
-         }
-         else {
-             result1[i][j] = X[i][j]; // Элемент остается без изменений
-             result2[i][j] = (i < M2_row && j < N2_colum) ? 0 : X[i][j]; // Элемент остается без изменений
-         }
-     }
- }*/
-for (int i = 0; i < M1_row; i++) // заполнение первого результиирующего массива
-{
-    for (int j = 0; j < N1_colum; j++)
-    {
-        if (i >= M1_row - M2_row && j >= N1_colum - N2_colum)
+        double* from = &X[i][col_copy_from];
+        double* to = new double[r1_col_count];
+        //memcpy(to, from, sizeof(double) * r1_col_count);
+        for (unsigned int j = 0; j < r1_col_count; j++)
         {
-            result1[i][j] = arr_X[i][j];
+            to[j] = from[j];
         }
+        result1[i] = to;
     }
-}
-// заполнение второго результирующего массива
-for (int i = 0; i < M2_row; i++)
-{
-    for (int j = 0; j < N2_colum; j++)
+
+    // Результирующий массив 2 (result2)
+    unsigned int row_copy_from = y_row_count;
+    unsigned int r2_row_count = x_row_count - y_row_count;
+    unsigned int r2_col_count = y_col_count;
+    double** result2 = new double* [r2_row_count];
+
+    for (unsigned int i = 0; i < r2_row_count; i++)
     {
-        if (i >= M1_row - M2_row && j >= N1_colum - N2_colum)
+        double* from = X[row_copy_from + i];
+        double* to = new double[r2_col_count];
+        //memcpy(to, from, sizeof(double) * r2_col_count);
+        for (unsigned int j = 0; j < r2_col_count; j++)
         {
-            result2[i][j] = arr_Y[i][j];
+            to[j] = from[j];
         }
-
+        result2[i] = to;
     }
-}
-
-    // Вывод массивов
-    cout << "Массив X (M1, N1):" << endl;
-    for (int i = 0; i < M1_row; ++i) {
-        for (int j = 0; j < N1_colum; ++j) {
-            cout << arr_X[i][j] << " ";
-        }
-        cout << endl;
-    }
-
-    cout << "Массив Y (M2, N2):" << endl;
-    for (int i = 0; i < M2_row; ++i) {
-        for (int j = 0; j < N2_colum; ++j) {
-            cout << arr_Y[i][j] << " ";
-        }
-        cout << endl;
-    }
-
-
 
     // Вывод результирующего массива 1
-    cout << "Результирующий массив 1 (разность X и Y):" << endl;
-    for (int i = 0; i < M1_row; i++) 
-    {
-        for (int j = 0; j < N1_colum; j++) 
-        {
-            cout << result1[i][j] << " ";
-        }
-        cout << endl;
-    }
-
+    cout << "\nРезультирующий массив 1 (разность X и Y):\n";
+    printArry(result1, r1_row_count, r1_col_count);
     // Вывод результирующего массива 2
-    cout << "Результирующий массив 2 (разность X и Y):" << endl;
-    for (int i = 0; i < M1_row; i++) 
-    {
-        for (int j = 0; j < N1_colum; j++) 
-        {
-            cout << result2[i][j] << " ";
-        }
-        cout << endl;
-    }
+    cout << "\nРезультирующий массив 2 (разность X и Y):\n";
+    printArry(result2, r2_row_count, r2_col_count);
 
     // Освобождение памяти
-    for (unsigned int i = 0; i < M1_row; i++) 
-    {
-        delete[] arr_X[i];
-    }
-    delete[] arr_X;
-
-    for (unsigned int i = 0; i < M2_row; i++) 
-    {
-        delete[] arr_Y[i];
-    }
-    delete[] arr_Y;
-
-    for (unsigned int i = 0; i < M2_row; i++) 
-    {
-        delete[] result1[i];
-    }
-    delete[] result1;
-
-    for (unsigned int i = 0; i < M1_row; i++) 
-    {
-        delete[] result2[i];
-    }
-    delete[] result2;
+    freeArray(result1, r1_row_count);
+    freeArray(result2, r2_row_count);
+    freeArray(X, x_row_count);
+    freeArray(Y, y_row_count);
 
     return 0;
 }
-
 
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
@@ -264,6 +247,7 @@ for (int i = 0; i < M2_row; i++)
 // Советы по началу работы 
 //   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
 //   2. В окне Team Explorer можно подключиться к системе управления версиями.
+// 
 //   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
 //   4. В окне "Список ошибок" можно просматривать ошибки.
 //   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
