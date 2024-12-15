@@ -20,11 +20,10 @@ double f(double x) {
 }
 
 
-int main()
-{
-    int main() 
+
+    int main()
     {
-        
+
         double a, b, h;
         setlocale(LC_ALL, "Russian");
         cout << "Лабораторная работа №2 задание №1" << endl;
@@ -44,7 +43,7 @@ int main()
         cout << "-----------------------\n";
 
         // проход интервала от a до b с шагом h
-        for (double x = a; x <= b; x += h) 
+        for (double x = a; x <= b; x += h)
         {
             double y = f(x); // вычисление y для текущего x
             cout << x << "\t\t" << y << endl; //вывод x и y
@@ -52,8 +51,65 @@ int main()
 
         return 0;
     }
-   
+
+/*#include <iostream>
+#include <cmath> // Для использования sin(), cos(), exp()
+
+using namespace std;
+
+// Рекурсивная функция для вычисления y от x
+double f(double x) {
+    if (x < -1) {
+        return pow(x, exp(1)) * (sin(x) - cos(x)) / 2;
+    }
+    else if (x >= -1 && x <= 0) {
+        return (exp(x) * cos(x) - 1) / 2;
+    }
+    else {
+        return pow(x, 2) * sin(2 * x);
+    }
 }
+
+// Рекурсивная функция для вычисления y для всех x в интервале [a, b]
+void calculateAndPrint(double a, double b, double h, double current) {
+    if (current > b) {
+        return; // Базовый случай: если текущий x превышает b, завершаем рекурсию
+    }
+
+    double y = f(current); // Вычисление y для текущего x
+    cout << current << "\t\t" << y << endl; // Вывод x и y
+
+    // Рекурсивный вызов для следующего значения x
+    calculateAndPrint(a, b, h, current + h);
+}
+
+int main() {
+    double a, b, h;
+    setlocale(LC_ALL, "Russian");
+    cout << "Лабораторная работа №2 задание №1" << endl;
+    cout << "Вычислить: y=|(x*exp(x)*(sin(x)-cos(x)/2), если x<-1 ;" << endl;
+    cout << "((exp(x)*cos(x)-1)/2), если x>=-1, x<=0;" << endl;
+    cout << "pow(x,2)*sin(2*x), если x>0 " << endl;
+
+    // Границы интервала и шаг
+    cout << "Введите значение a (левая граница интервала): ";
+    cin >> a;
+    cout << "Введите значение b (правая граница интервала): ";
+    cin >> b;
+    cout << "Введите шаг h: ";
+    cin >> h;
+
+    // Таблица
+    cout << "x\t\ty\n";
+    cout << "-----------------------\n";
+
+    // Начинаем рекурсивный процесс с начального значения a
+    calculateAndPrint(a, b, h, a);
+
+    return 0;
+}*/
+
+
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
 // Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
