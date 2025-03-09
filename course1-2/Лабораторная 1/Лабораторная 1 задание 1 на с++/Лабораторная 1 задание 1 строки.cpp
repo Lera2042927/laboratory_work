@@ -70,7 +70,6 @@ int main()
     delete[] numbers;
     delete[] operators;
 
-
     return 0;
 }
 
