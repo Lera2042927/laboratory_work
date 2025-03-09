@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "черновик для задания 3 на с++", "черновик для задания 3 на с++.vcxproj", "{2DA20C80-3967-4A0F-8B72-65E1E0DBD685}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2DA20C80-3967-4A0F-8B72-65E1E0DBD685}.Debug|x64.ActiveCfg = Debug|x64
+		{2DA20C80-3967-4A0F-8B72-65E1E0DBD685}.Debug|x64.Build.0 = Debug|x64
+		{2DA20C80-3967-4A0F-8B72-65E1E0DBD685}.Debug|x86.ActiveCfg = Debug|Win32
+		{2DA20C80-3967-4A0F-8B72-65E1E0DBD685}.Debug|x86.Build.0 = Debug|Win32
+		{2DA20C80-3967-4A0F-8B72-65E1E0DBD685}.Release|x64.ActiveCfg = Release|x64
+		{2DA20C80-3967-4A0F-8B72-65E1E0DBD685}.Release|x64.Build.0 = Release|x64
+		{2DA20C80-3967-4A0F-8B72-65E1E0DBD685}.Release|x86.ActiveCfg = Release|Win32
+		{2DA20C80-3967-4A0F-8B72-65E1E0DBD685}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B9578D58-F530-4407-BDC9-6A8FE6C52314}
+	EndGlobalSection
+EndGlobal
